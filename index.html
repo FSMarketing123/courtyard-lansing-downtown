@@ -121,7 +121,7 @@
   .hero .logo-tl{position:absolute;top:24%;left:74%;transform:translate(-50%,-50%);z-index:3;
         background:#362e27;border-radius:16px;padding:clamp(22px,3vw,40px) clamp(30px,4vw,58px);
         box-shadow:0 22px 55px rgba(0,0,0,.45)}
-  .hero .logo-tl img{width:clamp(240px,30vw,420px);height:auto;display:block}
+  .hero .logo-tl img{width:clamp(280px,34vw,470px);height:auto;display:block}
   @media(max-width:760px){.hero .logo-tl{top:20%;left:50%;padding:22px 30px}.hero .logo-tl img{width:clamp(210px,58vw,320px)}}
   @media(prefers-reduced-motion:reduce){.hero .hero-bg{transform:none!important}}
   .hero .headline{position:absolute;left:var(--pad);right:var(--pad);top:52%;transform:translateY(-50%);z-index:2;max-width:920px}
@@ -357,8 +357,73 @@
   footer .bottom .note{max-width:640px}
   @media(max-width:760px){footer .fwrap{grid-template-columns:1fr;gap:44px}}
 </style>
+<style id="gate-styles">
+  /* ---- Theme knobs ---- */
+  :root{
+    --gate-bg:#021d49;
+    --gate-accent:#b08d57;
+    --gate-accent-hover:#c4a066;
+    --gate-text:#ffffff;
+    --gate-muted:rgba(255,255,255,.72);
+    --gate-dot-opacity:.20;
+    --gate-dot-spacing:19;
+    --gate-fade:to top;
+    --gate-font-serif:"Cormorant Garamond",Georgia,serif;
+    --gate-font-sans:"Poppins",system-ui,sans-serif;
+  }
+  body.gated{overflow:hidden}
+  #gate{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;
+        color:var(--gate-text);background-color:var(--gate-bg);overflow:hidden}
+  #gate.hide{display:none}
+  #gate .gate-dots{position:absolute;inset:0;z-index:0;pointer-events:none;
+                   background-image:radial-gradient(circle,rgba(255,255,255,var(--gate-dot-opacity)) 1px,transparent 1.4px);
+                   background-repeat:repeat;background-position:center;
+                   background-size:calc(var(--gate-dot-spacing) * 1px) calc(var(--gate-dot-spacing) * 1px);
+                   -webkit-mask-image:linear-gradient(var(--gate-fade),#000 0%,rgba(0,0,0,0) 100%);
+                   mask-image:linear-gradient(var(--gate-fade),#000 0%,rgba(0,0,0,0) 100%)}
+  #gate .gate-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
+                    text-align:center;padding:40px 24px;max-width:100%}
+  #gate .gate-logo{height:clamp(52px,7vw,66px);width:auto;margin-bottom:clamp(26px,4vw,38px)}
+  #gate h1{font-family:var(--gate-font-serif);font-weight:300;font-size:clamp(27px,4vw,40px);
+           color:var(--gate-text);margin:0;letter-spacing:.01em}
+  #gate .gate-rule{width:54px;height:1px;background:var(--gate-accent);margin:20px auto 22px}
+  #gate p{font-family:var(--gate-font-sans);font-size:14px;color:var(--gate-muted);line-height:1.7;
+          margin:0 0 30px;max-width:46ch}
+  #gate form{width:min(460px,100%);display:flex;flex-direction:column;align-items:center;gap:12px}
+  #gate input,#gate button{box-sizing:border-box}
+  #gate input{width:100%;padding:13.5px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.24);
+              color:#fff;font-family:var(--gate-font-sans);font-size:14px;border-radius:2px;text-align:center;
+              outline:none;transition:border-color .2s}
+  #gate input::placeholder{color:rgba(255,255,255,.5);letter-spacing:.16em;text-transform:uppercase;font-size:12px}
+  #gate input:focus{border-color:var(--gate-accent)}
+  #gate .gate-err{min-height:15px;font-size:11.5px;letter-spacing:.06em;color:#e6b0b0;opacity:0;transition:opacity .2s}
+  #gate .gate-err.show{opacity:1}
+  #gate button{width:100%;padding:16px;background:var(--gate-accent);color:var(--gate-bg);border:0;cursor:pointer;
+                font-family:var(--gate-font-sans);font-size:12px;font-weight:600;letter-spacing:.24em;
+                text-transform:uppercase;border-radius:2px;transition:background .2s}
+  #gate button:hover{background:var(--gate-accent-hover)}
+  #gate .gate-foot{margin-top:clamp(30px,5vw,44px);font-family:var(--gate-font-sans);font-size:11px;font-weight:500;
+                   letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+</style>
 </head>
 <body>
+
+<!-- ================= ACCESS GATE ================= -->
+<div id="gate" role="dialog" aria-modal="true" aria-label="Access required">
+  <div class="gate-dots" aria-hidden="true"></div>
+  <div class="gate-inner">
+    <img class="gate-logo" id="gate-logo" src="assets/hwe-logo-white.svg" alt="Hodges Ward Elliott">
+    <h1 id="gate-title">Confidential Offering Memorandum</h1>
+    <div class="gate-rule"></div>
+    <p id="gate-sub">This offering is password-protected. Please enter the access password provided to you.</p>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="password" placeholder="Access password" aria-label="Access password" autocomplete="off" spellcheck="false">
+      <div class="gate-err" id="gate-err">Incorrect password. Please try again.</div>
+      <button type="submit">Enter</button>
+    </form>
+    <div class="gate-foot" id="gate-foot">Courtyard Lansing Downtown &bull; Lansing, MI</div>
+  </div>
+</div>
 
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
@@ -906,6 +971,61 @@
       if(resetBtn){ resetBtn.addEventListener("click", function(e){ e.stopPropagation(); resetMap(); }); }
     });
   })();
+</script>
+<!-- ================= GATE SCRIPT ================= -->
+<script id="gate-script">
+(function(){
+  var GATE = {
+    password:          "hwe123",
+    logo:              "assets/hwe-logo-white.svg",
+    title:             "Confidential Offering Memorandum",
+    subtitle:          "This offering is password-protected. Please enter the access password provided to you.",
+    footer:            "Courtyard Lansing Downtown &bull; Lansing, MI",
+    requireEveryVisit: false
+  };
+
+  var gate  = document.getElementById('gate'),
+      form  = document.getElementById('gate-form'),
+      input = document.getElementById('gate-input'),
+      err   = document.getElementById('gate-err'),
+      dots  = gate.querySelector('.gate-dots');
+
+  document.getElementById('gate-logo').src = GATE.logo;
+  document.getElementById('gate-title').textContent = GATE.title;
+  document.getElementById('gate-sub').textContent = GATE.subtitle;
+  document.getElementById('gate-foot').innerHTML = GATE.footer;
+
+  function layoutDots(){
+    if(!dots) return;
+    var T = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gate-dot-spacing')) || 19;
+    var w = window.innerWidth, h = window.innerHeight;
+    var cols = Math.max(1, Math.round(w/T)), rows = Math.max(1, Math.round(h/T));
+    dots.style.backgroundSize = (w/cols).toFixed(3)+'px '+(h/rows).toFixed(3)+'px';
+  }
+  layoutDots();
+  window.addEventListener('resize', layoutDots, {passive:true});
+  window.addEventListener('orientationchange', layoutDots);
+
+  function unlock(){ gate.classList.add('hide'); document.body.classList.remove('gated'); }
+
+  var KEY = 'gate_ok';
+  if(!GATE.requireEveryVisit && sessionStorage.getItem(KEY) === '1'){
+    unlock();
+  } else {
+    document.body.classList.add('gated');
+    setTimeout(function(){ if(input) input.focus(); }, 60);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if((input.value||'').trim() === GATE.password){
+      if(!GATE.requireEveryVisit){ try{ sessionStorage.setItem(KEY,'1'); }catch(_){} }
+      unlock();
+    } else {
+      err.classList.add('show'); input.value=''; input.focus();
+    }
+  });
+})();
 </script>
 </body>
 </html>
