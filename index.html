@@ -208,15 +208,15 @@
   @media(max-width:760px){.gal{grid-template-columns:1fr 1fr;grid-auto-rows:210px}.gal .big{grid-row:auto;grid-column:1/3}.gal .wide{grid-column:1/3}}
 
   /* Location */
-  .loc{display:grid;grid-template-columns:0.9fr 1.1fr;gap:clamp(40px,5vw,64px);align-items:start}
+  .loc{display:grid;grid-template-columns:0.9fr 1.1fr;gap:clamp(40px,5vw,64px);align-items:stretch}
   .loc .callout{display:flex;gap:13px;align-items:flex-start;margin-top:20px}
   .loc .callout .dot{width:7px;height:7px;border-radius:50%;background:var(--red);margin-top:9px;flex-shrink:0}
   .loc .callout .txt{font-size:16px;line-height:1.4}
   .loc .callout .txt b{display:block;color:var(--cream);font-weight:600;font-size:16.5px}
   .loc .callout .txt .sub{display:block;color:var(--muted);font-size:14.5px;margin-top:3px}
-  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto 1fr;gap:14px}
   .loc-grid figure{position:relative;margin:0;overflow:hidden;border-radius:4px;height:clamp(180px,24vw,236px);box-shadow:0 18px 50px rgba(0,0,0,.4);cursor:pointer}
-  .loc-grid figure.wide{grid-column:1/-1;height:clamp(170px,22vw,210px)}
+  .loc-grid figure.wide{grid-column:1/-1;height:auto;min-height:clamp(180px,24vw,236px)}
   .loc-grid figure>img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
   .loc-grid figure:hover>img,.loc-grid figure.hot>img{transform:scale(1.05)}
   .loc-grid .loc-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;
@@ -476,8 +476,8 @@
     <div class="ov">
       <div class="col-left">
         <div class="logo-badge"><img src="assets/courtyard-logo-white.svg" alt="Courtyard by Marriott — Lansing Downtown"></div>
-        <p class="lead" style="margin-top:28px">Hodges Ward Elliott (“HWE”) is pleased to present the opportunity to acquire the fee-simple interest in the 122-room Courtyard Lansing Downtown (“Property” or “Hotel”). The Marriott-branded, premium select-service hotel, was <span class="em">recently constructed in 2021</span> and is located at 600 E. Michigan Avenue at the heart of downtown Lansing.</p>
-        <p class="lead" style="margin-top:18px">The Hotel is surrounded by Lansing's Stadium District, home to a variety of prominent government, university, healthcare, sports, and leisure demand generators. The Hotel is directly adjacent to Capital City Market and across from Jackson Field, the Hotel offers convenient walkable access to Michigan State University (2.4 miles), the Michigan State Capitol (0.6 miles), and University of Michigan Health–Sparrow Hospital (0.4 miles).</p>
+        <p class="lead" style="margin-top:28px">Hodges Ward Elliott (“HWE”) is pleased to present the opportunity to acquire the fee-simple condominium interest in the 122-room Courtyard Lansing Downtown (“Property” or “Hotel”). The Marriott-branded, premium select-service hotel, was <span class="em">recently constructed in 2021</span> and is located at 600 E. Michigan Avenue at the heart of downtown Lansing.</p>
+        <p class="lead" style="margin-top:18px">The Hotel is surrounded by Lansing's Stadium District, home to a variety of prominent government, university, healthcare, sports, and leisure demand generators. The Hotel is directly adjacent to Capital City Market and across from Jackson Field, the Hotel offers convenient walkable access to Lansing Center, Michigan State University (2.4 miles), the Michigan State Capitol (0.6 miles), and University of Michigan Health–Sparrow Hospital (0.4 miles).</p>
         <div class="ovphoto first"><img src="assets/g-lounge.jpg" alt="Courtyard Lansing Downtown lobby lounge"></div>
         <div class="ovphoto"><img src="assets/g-king.jpg" alt="Courtyard Lansing Downtown king guestroom"></div>
         <div class="btns" style="display:flex;gap:14px;flex-wrap:wrap">
@@ -490,13 +490,13 @@
         <div class="pcard"><div class="v">2021</div><div class="l">Year Built / Opened</div></div>
         <div class="pcard expandable"><span class="toggle" aria-hidden="true">+</span><div class="v">122</div><div class="l">Keys · Room Mix</div><div class="more"><div class="more-in"><span class="more-l">Room Mix</span>74 king rooms, including 2 king suites, and 48 double-queen rooms</div></div></div>
         <div class="pcard"><div class="v">4</div><div class="l">Stories</div></div>
-        <div class="pcard"><div class="v">Fee Simple</div><div class="l">Ownership Interest</div></div>
+        <div class="pcard"><div class="v">Fee-Simple Condominium</div><div class="l">Ownership Interest</div></div>
         <div class="pcard expandable"><span class="toggle" aria-hidden="true">+</span><div class="v">1,808 <small>SF</small></div><div class="l">Meeting Space · Rooms</div><div class="more"><div class="more-in"><span class="more-l">Meeting Rooms</span>Capital Room: 1,689 SF when Red Cedar and Grand River rooms are combined · Red Cedar Room: 781 SF · Grand River Room: 908 SF · Executive Boardroom: 119 SF</div></div></div>
         <div class="pcard"><div class="v">The Bistro</div><div class="l">Food &amp; Beverage</div></div>
-        <div class="pcard"><div class="v">1.50 <small>acres</small></div><div class="l">Site Area</div></div>
-        <div class="pcard"><div class="v">50,000 <small>SF</small></div><div class="l">Gross Building Area</div></div>
-        <div class="pcard"><div class="v">Marriott Int'l</div><div class="l">Affiliation</div></div>
-        <div class="pcard"><div class="v">$15 <small>/ day</small></div><div class="l">Self-Parking</div></div>
+        <div class="pcard"><div class="v">0.56 <small>acres</small></div><div class="l">Site Area</div></div>
+        <div class="pcard"><div class="v">68,120 <small>SF</small></div><div class="l">Gross Building Area</div></div>
+        <div class="pcard"><div class="v">Marriott</div><div class="l">Affiliation</div></div>
+        <div class="pcard"><div class="v">$15 <small>/ day</small><br><small>121 Spaces</small></div><div class="l">Self-Parking</div></div>
         <div class="pcard"><div class="v">Unencumbered</div><div class="l">Management</div></div>
         <div class="pcard"><div class="v">Non-Union</div><div class="l">Labor</div></div>
         <div class="pcard full"><div class="v">3-story wood frame over a 1-story non-combustible first floor</div><div class="l">Construction</div></div>
@@ -542,7 +542,7 @@
       <div class="txt">
         <div class="num">Investment Highlight 02</div>
         <h2>Clean Investment Opportunity</h2>
-        <p>The fee-simple interest in the Courtyard is being offered free and clear of existing management and financing, affording new ownership maximum optionality in the future operation and capitalization of the Hotel.</p>
+        <p>The fee-simple condominium interest in the Courtyard is being offered free and clear of existing management and financing, affording new ownership maximum optionality in the future operation and capitalization of the Hotel.</p>
       </div>
       <div class="media"><img src="assets/hl2.jpg" alt="Double-queen guestroom"></div>
     </div>
@@ -566,7 +566,7 @@
       <div class="stats-g">
         <div class="stat"><div class="v">270M+</div><div class="l">Marriott Bonvoy Members</div></div>
         <div class="stat"><div class="v">1,000+</div><div class="l">Courtyard Properties · US &amp; Canada</div></div>
-        <div class="stat"><div class="v">140,000+</div><div class="l">Courtyard Guestrooms</div></div>
+        <div class="stat"><div class="v">140,000+</div><div class="l">Courtyard Guestrooms · US &amp; Canada</div></div>
         <div class="stat"><div class="v">#1</div><div class="l">Select-Service Brand Recognition</div></div>
       </div>
       <div class="pillars">
@@ -603,7 +603,7 @@
   <div class="aerial-wrap">
     <div class="eyebrow" style="margin-bottom:18px">Walkable Access</div>
     <h2 class="h2">In the middle of it all</h2>
-    <p class="lead" style="margin-top:16px">The Property sits at the center of Lansing's Stadium District — steps from Capital City Market and Jackson Field, and within a short walk of the Michigan State Capitol and University of Michigan Health–Sparrow Hospital.</p>
+    <p class="lead" style="margin-top:16px">The Property sits at the center of Lansing's Stadium District — steps from Capital City Market, Jackson Field, and Lansing Center, and within a short walk of the Michigan State Capitol and University of Michigan Health–Sparrow Hospital.</p>
     <div class="aerial" id="aerial">
       <img class="aerial-base" src="assets/aerial-core.jpg" alt="Aerial of downtown Lansing showing the Property and key demand generators">
       <svg class="aerial-svg" viewBox="0 0 3923 1980" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -981,7 +981,7 @@
     title:             "Confidential Offering Memorandum",
     subtitle:          "This offering is password-protected. Please enter the access password provided to you.",
     footer:            "Courtyard Lansing Downtown &bull; Lansing, MI",
-    requireEveryVisit: false
+    requireEveryVisit: true
   };
 
   var gate  = document.getElementById('gate'),
