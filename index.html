@@ -209,6 +209,8 @@
 
   /* Location */
   .loc{display:grid;grid-template-columns:0.9fr 1.1fr;gap:clamp(40px,5vw,64px);align-items:stretch}
+  .loc .loc-copy{display:flex;flex-direction:column}
+  .loc .loc-copy .callouts{margin-top:auto;padding-top:22px}
   .loc .callout{display:flex;gap:13px;align-items:flex-start;margin-top:20px}
   .loc .callout .dot{width:7px;height:7px;border-radius:50%;background:var(--red);margin-top:9px;flex-shrink:0}
   .loc .callout .txt{font-size:16px;line-height:1.4}
@@ -645,7 +647,7 @@
         <div class="eyebrow" style="margin-bottom:18px">Location</div>
         <h2 class="h2" style="margin-top:0">At The Heart Of<br>Downtown Lansing</h2>
         <p class="lead" style="margin-top:22px">Located a short walk from the Property is University of Michigan Health–Sparrow Hospital, the Mid-Michigan region's only Level 1 Trauma Center for adult and pediatric patients and an additional source of lodging demand. The hospital generates room nights from patients and their families, traveling healthcare professionals, visiting physicians, vendors, trainees, and other health-system affiliates.</p>
-        <div class="callouts" style="margin-top:30px">
+        <div class="callouts">
           <div class="callout"><span class="dot"></span><span class="txt"><b>Capital City Market</b><span class="sub">directly adjacent</span></span></div>
           <div class="callout"><span class="dot"></span><span class="txt"><b>Jackson Field</b><span class="sub">across E. Michigan Avenue</span></span></div>
           <div class="callout"><span class="dot"></span><span class="txt"><b>Lansing Center</b><span class="sub">0.3 miles · Convention &amp; events</span></span></div>
