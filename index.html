@@ -302,18 +302,23 @@
        text-transform:uppercase;padding:9px 16px;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:background .2s,transform .15s}
   .map-reset:hover{background:var(--red-lt);transform:translateY(-1px)}
   #demand-map{width:100%;height:100%;min-height:680px}
-  .demand .list{background:#fff;color:#0d1620;overflow-y:auto;max-height:720px}
-  .demand .list h4{margin:0;padding:16px 20px;font-family:var(--font-jost);font-weight:600;font-size:11px;letter-spacing:.2em;
-       text-transform:uppercase;color:#5a6b7d;background:#f8f4ef;border-bottom:1px solid #e4e9f0}
-  .demand .list .row{display:flex;gap:12px;align-items:flex-start;padding:14px 20px;border-bottom:1px solid #eef2f6;cursor:pointer;transition:background .15s}
-  .demand .list .row:hover{background:#f5f7fb}
-  .demand .list .row .pin{width:24px;height:24px;border-radius:50%;background:#0d1620;color:#fff;font-size:11px;
-       display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-jost)}
-  .demand .list .row.subj .pin{background:var(--blue)}
-  .demand .list .row .nm{font-size:14px;color:#0d1620;font-family:var(--font-jost);font-weight:500}
-  .demand .list .row .nt{font-size:12px;color:#7a8a9a;margin-top:2px;font-family:var(--font-jost)}
-  .demand .list .row.active{background:#f4ede5;box-shadow:inset 3px 0 0 var(--red)}
-  .demand .list .row.active .pin{background:var(--red)}
+  .demand .list{background:#eef1f5;color:#0d1620;overflow-y:auto;max-height:720px;padding:16px}
+  .demand .list h4{margin:0 0 13px;padding:2px 2px 0;font-family:var(--font-jost);font-weight:600;font-size:11px;letter-spacing:.2em;
+       text-transform:uppercase;color:#5a6b7d}
+  .dgcard{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #e5eaf1;border-radius:11px;
+       padding:13px 15px;margin-bottom:10px;cursor:pointer;transition:border-color .22s,box-shadow .22s,transform .22s}
+  .dgcard:hover,.dgcard.active{border-color:var(--red);box-shadow:0 10px 26px rgba(0,0,0,.12);transform:translateY(-2px)}
+  .dgcard .pin{width:26px;height:26px;border-radius:50%;background:#0d1620;color:#fff;font-size:11.5px;font-weight:600;
+       display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-jost);transition:background .2s}
+  .dgcard.subj .pin{background:#a5624f}
+  .dgcard:hover .pin,.dgcard.active .pin{background:var(--red)}
+  .dgcard .dg-body{flex:1;min-width:0}
+  .dgcard .nm{display:block;font-size:14px;color:#16202b;font-family:var(--font-jost);font-weight:600;line-height:1.3}
+  .dgcard .dg-more{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .dgcard:hover .dg-more,.dgcard.active .dg-more{max-height:64px}
+  .dgcard .nt{display:block;font-size:12.5px;color:#6b7b8d;margin-top:6px;font-family:var(--font-jost);line-height:1.5}
+  .dgcard .dg-caret{color:#c3ccd6;font-size:17px;line-height:1;transition:transform .22s,color .2s;flex-shrink:0}
+  .dgcard:hover .dg-caret,.dgcard.active .dg-caret{color:var(--red);transform:rotate(90deg)}
   .pin-pulse{animation:pinPulse 1.1s ease-out 1}
   @keyframes pinPulse{
     0%{box-shadow:0 0 0 0 rgba(165,98,79,.55);transform:scale(1)}
@@ -360,73 +365,8 @@
   footer .bottom .note{max-width:640px}
   @media(max-width:760px){footer .fwrap{grid-template-columns:1fr;gap:44px}}
 </style>
-<style id="gate-styles">
-  /* ---- Theme knobs ---- */
-  :root{
-    --gate-bg:#021d49;
-    --gate-accent:#b08d57;
-    --gate-accent-hover:#c4a066;
-    --gate-text:#ffffff;
-    --gate-muted:rgba(255,255,255,.72);
-    --gate-dot-opacity:.20;
-    --gate-dot-spacing:19;
-    --gate-fade:to top;
-    --gate-font-serif:"Cormorant Garamond",Georgia,serif;
-    --gate-font-sans:"Poppins",system-ui,sans-serif;
-  }
-  body.gated{overflow:hidden}
-  #gate{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;
-        color:var(--gate-text);background-color:var(--gate-bg);overflow:hidden}
-  #gate.hide{display:none}
-  #gate .gate-dots{position:absolute;inset:0;z-index:0;pointer-events:none;
-                   background-image:radial-gradient(circle,rgba(255,255,255,var(--gate-dot-opacity)) 1px,transparent 1.4px);
-                   background-repeat:repeat;background-position:center;
-                   background-size:calc(var(--gate-dot-spacing) * 1px) calc(var(--gate-dot-spacing) * 1px);
-                   -webkit-mask-image:linear-gradient(var(--gate-fade),#000 0%,rgba(0,0,0,0) 100%);
-                   mask-image:linear-gradient(var(--gate-fade),#000 0%,rgba(0,0,0,0) 100%)}
-  #gate .gate-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
-                    text-align:center;padding:40px 24px;max-width:100%}
-  #gate .gate-logo{height:clamp(52px,7vw,66px);width:auto;margin-bottom:clamp(26px,4vw,38px)}
-  #gate h1{font-family:var(--gate-font-serif);font-weight:300;font-size:clamp(27px,4vw,40px);
-           color:var(--gate-text);margin:0;letter-spacing:.01em}
-  #gate .gate-rule{width:54px;height:1px;background:var(--gate-accent);margin:20px auto 22px}
-  #gate p{font-family:var(--gate-font-sans);font-size:14px;color:var(--gate-muted);line-height:1.7;
-          margin:0 0 30px;max-width:46ch}
-  #gate form{width:min(460px,100%);display:flex;flex-direction:column;align-items:center;gap:12px}
-  #gate input,#gate button{box-sizing:border-box}
-  #gate input{width:100%;padding:13.5px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.24);
-              color:#fff;font-family:var(--gate-font-sans);font-size:14px;border-radius:2px;text-align:center;
-              outline:none;transition:border-color .2s}
-  #gate input::placeholder{color:rgba(255,255,255,.5);letter-spacing:.16em;text-transform:uppercase;font-size:12px}
-  #gate input:focus{border-color:var(--gate-accent)}
-  #gate .gate-err{min-height:15px;font-size:11.5px;letter-spacing:.06em;color:#e6b0b0;opacity:0;transition:opacity .2s}
-  #gate .gate-err.show{opacity:1}
-  #gate button{width:100%;padding:16px;background:var(--gate-accent);color:var(--gate-bg);border:0;cursor:pointer;
-                font-family:var(--gate-font-sans);font-size:12px;font-weight:600;letter-spacing:.24em;
-                text-transform:uppercase;border-radius:2px;transition:background .2s}
-  #gate button:hover{background:var(--gate-accent-hover)}
-  #gate .gate-foot{margin-top:clamp(30px,5vw,44px);font-family:var(--gate-font-sans);font-size:11px;font-weight:500;
-                   letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.42)}
-</style>
 </head>
 <body>
-
-<!-- ================= ACCESS GATE ================= -->
-<div id="gate" role="dialog" aria-modal="true" aria-label="Access required">
-  <div class="gate-dots" aria-hidden="true"></div>
-  <div class="gate-inner">
-    <img class="gate-logo" id="gate-logo" src="assets/hwe-logo-white.svg" alt="Hodges Ward Elliott">
-    <h1 id="gate-title">Investment Opportunity</h1>
-    <div class="gate-rule"></div>
-    <p id="gate-sub">This offering is password-protected. Please enter the access password provided to you.</p>
-    <form id="gate-form" autocomplete="off">
-      <input id="gate-input" type="password" placeholder="Access password" aria-label="Access password" autocomplete="off" spellcheck="false">
-      <div class="gate-err" id="gate-err">Incorrect password. Please try again.</div>
-      <button type="submit">Enter</button>
-    </form>
-    <div class="gate-foot" id="gate-foot">Courtyard Lansing Downtown &bull; Lansing, MI</div>
-  </div>
-</div>
 
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
@@ -931,11 +871,16 @@
 
   (function(){
     var listEl = document.getElementById("demand-list");
+    function card(subj, pin, nm, nt, lat, lng){
+      return '<div class="dgcard'+(subj?' subj':'')+'" data-lat="'+lat+'" data-lng="'+lng+'">'
+        + '<span class="pin">'+pin+'</span>'
+        + '<div class="dg-body"><span class="nm">'+nm+'</span><div class="dg-more"><span class="nt">'+(nt||'')+'</span></div></div>'
+        + '<span class="dg-caret" aria-hidden="true">&rsaquo;</span>'
+        + '</div>';
+    }
     var rowsHtml = '<h4>Subject &amp; Demand Generators</h4>';
-    rowsHtml += '<div class="row subj" data-lat="'+HOTEL.lat+'" data-lng="'+HOTEL.lng+'"><span class="pin">&#10022;</span><span><span class="nm">'+HOTEL.name+'</span></span></div>';
-    GENERATORS.forEach(function(g,i){
-      rowsHtml += '<div class="row" data-lat="'+g.lat+'" data-lng="'+g.lng+'"><span class="pin">'+(i+1)+'</span><span><span class="nm">'+g.name+'</span></span></div>';
-    });
+    rowsHtml += card(true, '&#10022;', HOTEL.name, '600 E Michigan Ave · Subject Property', HOTEL.lat, HOTEL.lng);
+    GENERATORS.forEach(function(g,i){ rowsHtml += card(false, (i+1), g.name, g.note, g.lat, g.lng); });
     listEl.innerHTML = rowsHtml;
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -955,7 +900,7 @@
         allMarkers.push( L.marker([g.lat,g.lng], { icon:icon((i+1), "#0d1620") }).addTo(map).bindPopup("<b>"+g.name+"</b>"+(g.note?"<br>"+g.note:"")) );
       });
 
-      var rows = document.querySelectorAll("#demand-list .row");
+      var rows = document.querySelectorAll("#demand-list .dgcard");
 
       function clearHighlight(){
         rows.forEach(function(r){ r.classList.remove("active"); });
@@ -988,61 +933,6 @@
       if(resetBtn){ resetBtn.addEventListener("click", function(e){ e.stopPropagation(); resetMap(); }); }
     });
   })();
-</script>
-<!-- ================= GATE SCRIPT ================= -->
-<script id="gate-script">
-(function(){
-  var GATE = {
-    password:          "hwe123",
-    logo:              "assets/hwe-logo-white.svg",
-    title:             "Investment Opportunity",
-    subtitle:          "This offering is password-protected. Please enter the access password provided to you.",
-    footer:            "Courtyard Lansing Downtown &bull; Lansing, MI",
-    requireEveryVisit: true
-  };
-
-  var gate  = document.getElementById('gate'),
-      form  = document.getElementById('gate-form'),
-      input = document.getElementById('gate-input'),
-      err   = document.getElementById('gate-err'),
-      dots  = gate.querySelector('.gate-dots');
-
-  document.getElementById('gate-logo').src = GATE.logo;
-  document.getElementById('gate-title').textContent = GATE.title;
-  document.getElementById('gate-sub').textContent = GATE.subtitle;
-  document.getElementById('gate-foot').innerHTML = GATE.footer;
-
-  function layoutDots(){
-    if(!dots) return;
-    var T = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gate-dot-spacing')) || 19;
-    var w = window.innerWidth, h = window.innerHeight;
-    var cols = Math.max(1, Math.round(w/T)), rows = Math.max(1, Math.round(h/T));
-    dots.style.backgroundSize = (w/cols).toFixed(3)+'px '+(h/rows).toFixed(3)+'px';
-  }
-  layoutDots();
-  window.addEventListener('resize', layoutDots, {passive:true});
-  window.addEventListener('orientationchange', layoutDots);
-
-  function unlock(){ gate.classList.add('hide'); document.body.classList.remove('gated'); }
-
-  var KEY = 'gate_ok';
-  if(!GATE.requireEveryVisit && sessionStorage.getItem(KEY) === '1'){
-    unlock();
-  } else {
-    document.body.classList.add('gated');
-    setTimeout(function(){ if(input) input.focus(); }, 60);
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    if((input.value||'').trim() === GATE.password){
-      if(!GATE.requireEveryVisit){ try{ sessionStorage.setItem(KEY,'1'); }catch(_){} }
-      unlock();
-    } else {
-      err.classList.add('show'); input.value=''; input.focus();
-    }
-  });
-})();
 </script>
 </body>
 </html>
